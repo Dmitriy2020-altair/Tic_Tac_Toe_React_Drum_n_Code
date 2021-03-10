@@ -7,3 +7,42 @@
 	align-items: center;
 	flex-direction: column;
 }
+
+.start-btn {
+	width: 40%;
+	margin-bottom: 50px;
+	text-decoration: none;
+  display: inline-block;
+  padding: 15px 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px 40px #9e9d9e inset, 0 0 0 0 #383838;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  color: #000;
+  transition: .15s ease-in-out;
+	outline: none;
+	text-transform: uppercase;
+	text-shadow: 0 0 2px rgb(54, 52, 52);
+	letter-spacing: 1px;
+}
+
+.start-btn:hover {
+	box-shadow: 0 0 10px 0 #706f70 inset, 0 0 10px 4px #383838;
+}
+
+.start-btn:active {
+	box-shadow: 0 0 10px 0 #706f70 inset, 0 0 10px 4px #b9b8b8;
+}
+
+.game-info {
+	border: 1px solid white;
+	background-color: #9e9d9e;
+	padding: 20px;
+	margin-top: 20px;
+	font-size: 30px;
+	text-transform: capitalize;
+  font-weight: bold;
+  color: #000;
+	text-shadow: 0 0 2px rgb(54, 52, 52);
+	letter-spacing: 1px;
+}

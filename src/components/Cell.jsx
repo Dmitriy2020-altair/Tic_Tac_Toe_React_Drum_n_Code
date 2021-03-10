@@ -1,10 +1,13 @@
 import React from 'react';
 import './Cell.css';
 
-function Cell() {
+function Cell(props) {
 	return (
-		<button className="cell">
-			x
+		<button
+			className="cell"
+			onClick={props.onClick}
+		>
+			{props.value}
 		</button>
 	)
 }
