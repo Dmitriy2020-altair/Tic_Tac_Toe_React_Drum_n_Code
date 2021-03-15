@@ -21,7 +21,6 @@ function Game() {
 		setHistory([...historyPoint, cells]);
 		setStepNumber(historyPoint.length);
 		setXIsNext(!xIsNext);
-		
 	};
 
 	const jumpTo = (step) => {
