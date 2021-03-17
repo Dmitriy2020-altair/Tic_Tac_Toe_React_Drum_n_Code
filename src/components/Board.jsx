@@ -4,7 +4,8 @@ import Cell from './Cell';
 
 function Board({ cells, click }) {
 	return (
-		<div className="board">
+		<div
+			className="board">
 			{
 				cells.map((cell, i) => (
 					<Cell

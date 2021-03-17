@@ -8,8 +8,8 @@ function Game() {
 	const [history, setHistory] = useState([Array(9).fill(null)]);
 	const [stepNumber, setStepNumber] = useState(0);
 	const [xIsNext, setXIsNext] = useState(true);
-	// const [opacityBoard, setOpacityBoard] = useState(0);
 	const winner = calculateWinner(history[stepNumber]);
+	const [showBoard, setShowBoard] = useState(false);
 	const x0 = xIsNext ? 'X' : 'O';
 
 	function handleClick(index) {
@@ -53,17 +53,21 @@ function Game() {
 		}
 	}
 
+
 	return (
 		<div className="wrapper">
 			<button
 				className="start-btn"
+				onClick={() => setShowBoard(true)}
 			>
 				Tap to start the game
 				</button>
-			<Board
-				cells={history[stepNumber]}
-				click={handleClick}
-			/>
+			{ 
+				showBoard && <Board
+					cells={history[stepNumber]}
+					click={handleClick}
+				/>
+			}
 			<p className="game-info">
 				{getStatus()}
 			</p>
