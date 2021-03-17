@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import Board from './Board';
 import './Game.css';
 import { calculateWinner } from '../helper';
+// import History from './History';
 
 function Game() {
 	const [history, setHistory] = useState([Array(9).fill(null)]);
 	const [stepNumber, setStepNumber] = useState(0);
 	const [xIsNext, setXIsNext] = useState(true);
+	// const [opacityBoard, setOpacityBoard] = useState(0);
 	const winner = calculateWinner(history[stepNumber]);
 	const x0 = xIsNext ? 'X' : 'O';
 
@@ -16,7 +18,7 @@ function Game() {
 		const cells = [...current];
 
 		if (winner || cells[index]) return;
-		
+
 		cells[index] = x0;
 		setHistory([...historyPoint, cells]);
 		setStepNumber(historyPoint.length);
@@ -40,20 +42,36 @@ function Game() {
 				</li>
 			);
 		});
-	
+
+	function getStatus() {
+		if (winner) {
+			return "Winner is: " + winner;
+		} else if (stepNumber === 9) {
+			return "No winner is Draw!";
+		} else {
+			return "player goes next: " + x0;
+		}
+	}
+
 	return (
 		<div className="wrapper">
+			<button
+				className="start-btn"
+			>
+				Tap to start the game
+				</button>
 			<Board
 				cells={history[stepNumber]}
 				click={handleClick}
 			/>
 			<p className="game-info">
-				{winner ? 'Winner is: ' + winner : 'next turn for: ' + x0}
+				{getStatus()}
 			</p>
-			<div className="history-wrapper">
-				<h2>History</h2>
+			<div
+				className="history-wrapper">
+				<h2 className="history-title">History</h2>
 				{renderMoves()}
-		</div>
+			</div>
 		</div>
 	)
 };
