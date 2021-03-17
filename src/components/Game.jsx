@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import Board from './Board';
 import './Game.css';
 import { calculateWinner } from '../helper';
-// import History from './History';
 
-function Game() {
+const Game = () => {
 	const [history, setHistory] = useState([Array(9).fill(null)]);
 	const [stepNumber, setStepNumber] = useState(0);
 	const [xIsNext, setXIsNext] = useState(true);
-	const winner = calculateWinner(history[stepNumber]);
 	const [showBoard, setShowBoard] = useState(false);
+	const [removeButton, setRemoveButton] = useState(true);
+	const winner = calculateWinner(history[stepNumber]);
 	const x0 = xIsNext ? 'X' : 'O';
 
-	function handleClick(index) {
+	const handleClick = (index) => {
 		const historyPoint = history.slice(0, stepNumber + 1);
 		const current = historyPoint[stepNumber];
 		const cells = [...current];
@@ -23,6 +23,8 @@ function Game() {
 		setHistory([...historyPoint, cells]);
 		setStepNumber(historyPoint.length);
 		setXIsNext(!xIsNext);
+
+		if (xIsNext) return setRemoveButton(false);
 	};
 
 	const jumpTo = (step) => {
@@ -32,7 +34,7 @@ function Game() {
 
 	const renderMoves = () =>
 		history.map((_step, move) => {
-			const destination = move ? `Go to move #${move}` : `Clear the board and GO to start`;
+			const destination = move ? `Go to move #${move}` : `START NEW GAME`;
 
 			return (
 				<li
@@ -41,9 +43,9 @@ function Game() {
 					<button onClick={() => jumpTo(move)}>{destination}</button>
 				</li>
 			);
-		});
+	});
 
-	function getStatus() {
+	const getStatus = () => {
 		if (winner) {
 			return "Winner is: " + winner;
 		} else if (stepNumber === 9) {
@@ -51,18 +53,19 @@ function Game() {
 		} else {
 			return "player goes next: " + x0;
 		}
-	}
-
+	};
 
 	return (
 		<div className="wrapper">
-			<button
-				className="start-btn"
-				onClick={() => setShowBoard(true)}
-			>
-				Tap to start the game
-				</button>
-			{ 
+			{
+				removeButton && <button
+					className="start-btn"
+					onClick={() => setShowBoard(true)}
+				>
+					Tap to start the game
+			</button>
+			}
+			{
 				showBoard && <Board
 					cells={history[stepNumber]}
 					click={handleClick}
@@ -71,8 +74,7 @@ function Game() {
 			<p className="game-info">
 				{getStatus()}
 			</p>
-			<div
-				className="history-wrapper">
+			<div className="history-wrapper">
 				<h2 className="history-title">History</h2>
 				{renderMoves()}
 			</div>

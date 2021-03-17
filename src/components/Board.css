@@ -4,10 +4,5 @@
 	box-shadow: 0 0 10px 3px rgb(184, 182, 182);
 	display: flex;
 	flex-wrap: wrap;
-	transition: .5s ease;
-	/* opacity: 0; */
 }
 
-.board .open {
-	opacity: 1;
-}
