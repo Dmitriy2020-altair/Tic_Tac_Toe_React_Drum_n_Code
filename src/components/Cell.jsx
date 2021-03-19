@@ -1,15 +1,15 @@
 import React from 'react';
 import './Cell.css';
 
-function Cell(props) {
-	return (
-		<button
-			className="cell"
-			onClick={props.onClick}
-		>
-			{props.value}
-		</button>
-	)
+function Cell({ onClick, value }) {
+  return (
+    <button
+      className="cell"
+      onClick={onClick}
+    >
+      {value}
+    </button>
+  );
 }
 
 export default Cell;
